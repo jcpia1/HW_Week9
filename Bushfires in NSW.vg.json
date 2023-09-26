@@ -1,0 +1,47 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Bushfires in NSW",
+  "width": 800,
+  "height": 500,
+  "projection": {"type": "mercator"},  
+  "layer": [
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/jcpia1/HW_Week9/main/map_and_data.json",
+        "format": {
+          "type": "topojson",
+          "feature": "ne_10m_admin_1_states_provinces"
+        }
+      },
+      "mark": {
+        "type": "geoshape",
+        "fill": "#d2d2d2",
+        "stroke": "#ffffff"
+      }
+    },
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/jcpia1/HW_Week9/main/map_and_data.json",
+        "format": {
+          "type": "topojson",
+          "feature": "NSW_fire_history_polygons"
+        }
+      },
+      "mark": {
+        "type": "geoshape",
+        "fill": "red",
+        "stroke": "black",
+        "opacity": 0.2
+      },
+      "encoding": {
+        "tooltip": [
+          {"field": "properties.Year", "type": "quantitative", "title": "Year"},
+          {"field": "properties.FireName", "type": "nominal", "title": "Fire Name"},
+          {"field": "properties.AreaHa", "type": "quantitative", "title": "Area (Ha)"},
+          {"field": "properties.PerimeterM", "type": "quantitative", "title": "Perimeter (M)"},
+          {"field": "properties.Type", "type": "nominal", "title": "Type"}
+        ]
+      }
+    }
+  ]
+}
